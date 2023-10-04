@@ -9,7 +9,7 @@
 
  namespace UserReviewForm;
 
-//  use UserReviewForm\Admin\Admin;
+ use UserReviewForm\Admin\Admin;
 
 if(!defined('ABSPATH')){
     exit;

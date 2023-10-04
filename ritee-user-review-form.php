@@ -45,6 +45,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 // 	return "";
 // }
 
+if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
+}
+
 use UserReviewForm\ReviewForm;
 
 if(!defined('RITEE_USER_REVIEW_FORM_VERSION')){
