@@ -9,7 +9,8 @@
 
  namespace UserReviewForm;
 
-//  use UserReviewForm\Admin\Admin;
+ use UserReviewForm\Admin\Admin;
+ use UserReviewForm\Shortcodes;
 
 if(!defined('ABSPATH')){
     exit;
@@ -47,6 +48,8 @@ if( ! class_exists('ReviewForm') ) :
            */
 
            public $admin = null;
+
+           public $shortcodes = null;
 
            /**
             * Return an instance of this class
@@ -90,6 +93,8 @@ if( ! class_exists('ReviewForm') ) :
        public function includes(){
         // Files to include
         $this -> install = new Install();
+
+        $this->shortcodes = new Shortcodes();
 
         //Class admin
         if($this->is_admin()){
