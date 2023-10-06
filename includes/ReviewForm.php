@@ -51,6 +51,8 @@ if( ! class_exists('ReviewForm') ) :
 
            public $shortcodes = null;
 
+           public $ajax = null;
+
            /**
             * Return an instance of this class
             * 
@@ -95,6 +97,8 @@ if( ! class_exists('ReviewForm') ) :
         $this -> install = new Install();
 
         $this->shortcodes = new Shortcodes();
+
+        $this->ajax = new Ajax();
 
         //Class admin
         if($this->is_admin()){

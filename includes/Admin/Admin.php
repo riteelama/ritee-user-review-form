@@ -65,46 +65,40 @@ class Admin {
 	 * Loads screen options into memory.
 	 */
 
-     public function template_page_init(){
-
-     }
-
-     public function ritee_user_review_form_list_page() {
-		ob_start();
-		echo '<h1>User Review Form Settings</h1>';
-		echo ob_get_clean();
-	}
-
-
-	// public function template_page_init() {
-	// 	// Table display code here.
-
-	// 	// Day 2
-	// 	global $ts_job_application_table_list;
-
-	// 	$ts_job_application_table_list = new ListTable();
-	// 	$ts_job_application_table_list->process_actions();
-
-	// 	// Add screen option.
-	// 	add_screen_option(
-	// 		'per_page',
-	// 		array(
-	// 			'default' => 20,
-	// 			'option'  => 'ts_job_applications_per_page',
-	// 		)
-	// 	);
+    //  public function ritee_user_review_form_list_page() {
+	// 	ob_start();
+	// 	echo '<h1>User Review Form Settings</h1>';
+	// 	echo ob_get_clean();
 	// }
+
+
+	public function template_page_init() {
+		// Table display code here.
+
+
+		global $ritee_user_review_table_list;
+		$ritee_user_review_table_list = new ListTable();
+		$ritee_user_review_table_list->process_actions();
+
+		// Add screen option.
+		add_screen_option(
+			'per_page',
+			array(
+				'default' => 20,
+				'option'  => 'ritee_user_review_per_page',
+			)
+		);
+	}
 
 	/**
 	 *  Init the Job Application Form List page.
 	 */
-	// public function ts_job_application_form_list_page() {
-		// ob_start();
-		// echo '<h1>Job Application Form Settings</h1>';
-		// echo ob_get_clean();
+	public function ritee_user_review_form_list_page() {
+		ob_start();
+		echo '<h1>User Review Form Settings</h1>';
+		echo ob_get_clean();
 
-		// Day 2
-	// 	global $ts_job_application_table_list;
-	// 	$ts_job_application_table_list->display_page();
-	// }
+		global $ritee_user_review_table_list;
+		$ritee_user_review_table_list->display_page();
+	}
 }

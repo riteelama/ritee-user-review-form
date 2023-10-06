@@ -2,6 +2,15 @@ body {
 	background-color: black;
 }
 
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
 .ritee-user-review-form-wrap {
 	background-color: #F6F8FA;
 	margin-bottom: 30px;

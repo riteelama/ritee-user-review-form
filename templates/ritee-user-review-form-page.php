@@ -1,6 +1,6 @@
 <?php
 /**
- * Job Application Form Layout
+ * User Review Form Layout
  *
  * @package UserReviewForm/Templates
  * @version 1.0.0
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<form id="ritee-user-review-form" method="POST" enctype="multipart/form-data">
 		<div class="ritee-user-review-form-row">
-			<div class="ritee-user-review-input-row rur">
+			<div class="ritee-user-review-input-row tsja">
 				<label for="first_name" class="ritee-user-review-form-label"><?php esc_html_e( 'First Name', 'ritee-user-review-form' ); ?><span class="form-required">*</span></label>
 				<input type="text" class="input-text ritee-user-review-form-frontend-field" id="first_name" name="first_name" >
 			</div>
@@ -35,14 +35,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 			<div class="ritee-user-review-form-input-row">
 				<label for="user_password" class="ritee-user-review-form-label"><?php esc_html_e( 'Password', 'ritee-user-review-form' ); ?><span class="form-required">*</span></label>
-				<input type="password" class="input-text ritee-user-review-form-frontend-field" id="user_password" name="user_password" >
+				<input type="password" class="input-text ritee-user-review-form-frontend-field" id="user_password" name="user_password">
 			</div>
 		</div>
 
 		<div class="ritee-user-review-form-row">
 			<div class="ritee-user-review-form-input-row">
 				<label for="user_review" class="ritee-user-review-form-label"><?php esc_html_e( 'User Review', 'ritee-user-review-form' ); ?></label>
-				<textarea name="user_review" id="user_review" class="input-text"></textarea>
+				<textarea name="user_review" id="user_review" name="user_review" class="input-text"></textarea>
 			</div>
 		</div>
 

@@ -99,6 +99,7 @@ if( ! class_exists ( 'Install' )) :
                   username varchar(255) NOT NULL,
 						review text NOT NULL,
                   rating double precision,
+                  submitted_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 						PRIMARY KEY (ID)
 					) $charset_collate;
 				";
