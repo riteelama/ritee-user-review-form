@@ -181,7 +181,7 @@ class ListTable extends \WP_List_Table {
 	public function display_page() {
 		$this->prepare_items();
 		?>
-			<div class="wrap">
+			<div class="wrap ritee-user-review-table">
 				<h1 class="wp-heading-inline"><?php esc_html_e( 'User Reviews' ); ?></h1>
 				<hr class="wp-header-end">
 				<form id="user-review-list" method="get">
@@ -226,6 +226,8 @@ class ListTable extends \WP_List_Table {
 		$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
 
 		$result = $wpdb->get_results( $sql, 'ARRAY_A' );
+
+		
 
 		return $result;
 	}

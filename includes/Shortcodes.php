@@ -25,25 +25,13 @@ class Shortcodes {
         error_log(print_r("hello",true));
 		$shortcodes = array(
 			'user_review_form'        => __CLASS__ . '::user_review_form',
-			'user_review_display'     => __CLASS__. '::user_review_display'
+			'user_review_display'     => __CLASS__. '::user_review_display',
 		);
 
 		foreach ( $shortcodes as $shortcode => $function ) {
             $shortcode = apply_filters( "{$shortcode}_shortcode_tag", $shortcode );
 			add_shortcode( $shortcode, $function );
 		}
-	}
-
-	/**
-	 * Review Form shortcode.
-	 *
-	 * @param mixed $atts Attributes.
-	 */
-	public static function user_review_form( $atts ) {
-       
-		ob_start();
-		self::render_review_form();
-		return ob_get_clean();
 	}
 
 	/**
@@ -55,6 +43,18 @@ class Shortcodes {
        
 		ob_start();
 		self::render_review_display();
+		return ob_get_clean();
+	}
+
+	/**
+	 * AJAX Test shortcode.
+	 *
+	 * @param mixed $atts Attributes.
+	 */
+	public static function user_review_form( $atts ) {
+       
+		ob_start();
+		self::render_review_form();
 		return ob_get_clean();
 	}
 
@@ -114,7 +114,6 @@ class Shortcodes {
 		else{
 			include RITEE_USER_REVIEW_FORM_TEMPLATE_PATH . '/ritee-user-review-login-notification.php';
 		}
-
 
 	}
 

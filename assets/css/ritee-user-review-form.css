@@ -89,3 +89,30 @@ input[type=text], input[type=email], input[type=tel], input[type=password], inpu
     line-height: 1.25;
     text-transform: none;
 }
+
+input.current_page{
+    width: 5%;
+    height: 1%;
+}
+
+.nav-links {
+    padding: 1.2rem;
+    border: 1px solid #000000;
+    height: 100%;
+    font-size: 2rem;
+}
+
+.page-nav a {
+    text-decoration: none;
+}
+
+.page-nav a.disabled {
+    pointer-events: none;
+    cursor: default;
+    background: #a7aaad;
+    color: #eee;
+}
+
+a.nav-links {
+    color: #000;
+}
