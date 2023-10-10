@@ -151,7 +151,6 @@ class AJAX {
 			$result = $wpdb->get_results( $sql,ARRAY_A);
 			$data = ["message"=>"Data sent successfully",'data'=>$result];
 			wp_send_json_success($result);
-			error_log(print_r($result,true));
 		}else if($_POST['pagination_type'] == "prev"){
 			$current_page = $_POST['current_page_no'];
 			$page_number = $current_page--;
@@ -160,7 +159,9 @@ class AJAX {
 			$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
 
 			$result = $wpdb->get_results( $sql,ARRAY_A);
-			error_log(print_r($result,true));
+			$data = ["message"=>"Data sent successfully",'data'=>$result];
+			wp_send_json_success($result);
+			// error_log(print_r($result,true));
 			
 		}else if($_POST['pagination_type'] == 'first'){
 			$page_number = 1;
@@ -168,14 +169,18 @@ class AJAX {
 			$sql .= " LIMIT $per_page";
 			$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
 			$result = $wpdb->get_results( $sql,ARRAY_A);
-			error_log(print_r($result,true));
+			$data = ["message"=>"Data sent successfully",'data'=>$result];
+			wp_send_json_success($result);
+			// error_log(print_r($result,true));
 		}else if($_POST['pagination_type'] == "last"){
 			$page_number = $total_page;
 			error_log(print_r($page_number,true));
 			$sql .= " LIMIT $per_page";
 			$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
 			$result = $wpdb->get_results( $sql,ARRAY_A);
-			error_log(print_r($result,true));
+			$data = ["message"=>"Data sent successfully",'data'=>$result];
+			wp_send_json_success($result);
+			// error_log(print_r($result,true));
 		}
 	 }
 }

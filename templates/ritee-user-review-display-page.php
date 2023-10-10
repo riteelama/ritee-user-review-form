@@ -66,7 +66,7 @@ wp_enqueue_script( "ritee-user-review-form-script", RITEE_USER_REVIEW_FORM_ASSET
             <a href="" class="nav-links nav-first button disabled" data-pagination-button = "first">&#171;</a>
             <a href="" class="nav-links nav-prev button disabled" data-pagination-button = "prev">&#60;</a>
               <p class="nav-links nav-current-count"><?php echo $page_number .' of ' ;?></p>
-            <p class="nav-links nav-total-count" data-total-page> <?php echo ' '.$total_page; ?> </p>
+            <p class="nav-links nav-total-count" data-total-page=<?php echo ' '.$total_page; ?>> <?php echo ' '.$total_page; ?></p>
             <a href="" class="nav-links nav-next button" data-pagination-button = "next">&#62;</a>
             <a href="" class="nav-links nav-last button" data-pagination-button = "last">&#187;</a>
         </nav>

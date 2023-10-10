@@ -6,6 +6,8 @@ jQuery(function($) {
         var pagination_type = $(this).data('pagination-button');
         
 		var page_no = $(".ritee-page-nav").data('current-page-no');
+        var total_page = $(".nav-total-count").data('total-page');
+        console.log(total_page);
 		var formData = new FormData();
 		formData.append("action", "ritee_user_review_form_pagination");
 		formData.append(
@@ -20,7 +22,12 @@ jQuery(function($) {
 		  "pagination_type",
           pagination_type
 		);
+        formData.append(
+            "total_page",
+            total_page
+          );
 		// console.log(ritee_user_review_display_script_params.ajax_url);
+        console.log(formData);
         $.ajax({
             url: ritee_user_review_display_script_params.ajax_url,
             type: 'POST',
@@ -28,13 +35,12 @@ jQuery(function($) {
             processData: false,
             contentType: false,
             success: function(response) {
+                console.log(formData.values);
+                console.log(formData)
                 $('.ritee-review-display').remove();
                 $('.ritee-page-nav').remove();
                 var html;
                 html = "<div class='row-fluid d-flex flex-wrap ritee-review-display'>";
-                html += "<div class='col-md-6'>";
-                html += "<div class='card mx-5 my-5'>";
-                html += "<div class='card-body'>";
                 $('.ritee-review-display-parent').html(html);
                 var data = response.data;
                 $.each(data,function(index,value){
@@ -44,20 +50,16 @@ jQuery(function($) {
                     var review = value.review;
                     var rating = value.rating;
 
-                    // var $dataDiv = $('<div></div>');
-
                 // Create HTML tags within the div for displaying data
-                $('.card-body').append($("<h3><strong>FullName: </strong></h3>" +"<h4 class='card-title'>" + value.first_name +' ' + value.last_name + '</h4>'));
-                $('.card-body').append($("<h3><strong>Username: </strong></h3>" +"<h4 class='card-title'>" + value.username+'</h4>'));
-                $('.card-body').append($("<h3><strong>Email: </strong></h3>" +"<h4 class='card-title'>" + value.email+'</h4>'));
-                $('.card-body').append($("<h3><strong>Review: </strong></h3>" +"<h4 class='card-title'>" + value.review+'</h4>'));
-                $('.card-body').append($("<h3><strong>Rating: </strong></h3>" +"<h4 class='card-title'>" + value.rating+'</h4>'));
+                $('.ritee-review-display').append($("<div class='col-md-6'><div class='card mx-5 my-5'><div class='card-body'><h3><strong>FullName: </strong></h3><h4 class='card-title'>" + value.first_name + ' ' + value.last_name + "</h4><h3><strong>Username: </strong></h3><h4 class='card-title'>" + value.username + "</h4><h3><strong>Email: </strong></h3><h4 class='card-title'>" + value.email+"</h4><h3><strong>Review: </strong></h3><h4 class='card-title'>" + value.review + "</h4><h3><strong>Rating: </strong></h3><h4 class='card-title'>" + value.rating + "</h4></div></div></div>"));
 
-                // Append the div to the result container
-                // .append($dataDiv);
                 });
-                console.log(data);
-                // html += "</div>";
+
+                if(formData.get('pagination-button') == "first" || formData.get('pagination-button') == 1){
+                    $('.ritee-review-display-parent').append($("<nav class='d-flex ritee-page-nav' id='ritee-pagination-result' data-current-page-no="+ formData.get('current_page_no')+ "><a class='nav-links nav-first button disabled' data-pagination-button = 'first'>&#171;</a><a class='nav-links nav-prev button disabled' data-pagination-button = 'prev'>&#60;</a><p class='nav-links nav-current-count>"+ formData.get('current_page_no') +" of " + "</p><p class='nav-links nav-total-count' data-total-page="+formData.get('total_page')+ "<p><a class='nav-links nav-next button data-pagination-button = 'next>&#62;</a><a class='nav-links nav-last button' data-pagination-button = 'last'>&#187;</a> </nav>"));
+                }else if(formData.get('pagination-button') == "last" || formData.get('pagination-button') == formData.get('total_page')){
+                    $('.ritee-review-display-parent').append($("<nav class='d-flex ritee-page-nav' id='ritee-pagination-result' data-current-page-no="+ formData.get('current_page_no')+ "><a class='nav-links nav-first button' data-pagination-button = 'first'>&#171;</a><a class='nav-links nav-prev button' data-pagination-button = 'prev'>&#60;</a><p class='nav-links nav-current-count>"+ formData.get('current_page_no') +" of " + "</p><p class='nav-links nav-total-count' data-total-page="+formData.get('total_page')+ "<p><a class='nav-links nav-next button disabled' data-pagination-button = 'next>&#62;</a><a class='nav-links nav-last button disabled' data-pagination-button = 'last'>&#187;</a> </nav>"));
+                }
 
             },
             error: function(){
