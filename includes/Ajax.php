@@ -32,9 +32,11 @@ class AJAX {
 	 * Hook in methods - uses WordPress ajax handlers (admin-ajax)
 	 */
 	public static function add_ajax_events() {
-
+		
 		add_action( 'wp_ajax_ritee_user_review_form_submit_form', array( __CLASS__, 'submit_form' ) );
 		add_action('wp_ajax_nopriv_ritee_user_review_form_submit_form', array( __CLASS__, 'submit_form' ) );
+		add_action( 'wp_ajax_ritee_user_review_form_pagination', array( __CLASS__, 'form_pagination' ) );
+		add_action('wp_ajax_nopriv_ritee_user_review_form_pagination', array( __CLASS__, 'form_pagination' ) );
 	}
 
 	/**
@@ -106,4 +108,74 @@ class AJAX {
 			);
 		}
 	}
+
+	/**
+	 * Handles the pagination
+	 */
+
+	 public static function form_pagination(){
+		global $wpdb;
+
+		error_log(print_r($_POST,true));
+		if ( ! check_ajax_referer( 'ritee_user_review_display_submit_nonce', 'security' ) ) {
+			wp_send_json_error(
+				array(
+					'message' => esc_html__( 'Nonce error please reload.', 'ritee-user-review-form' ),
+				)
+			);
+		}
+
+		$per_page = 5;
+		$current_page = 0;
+
+		$sql = "SELECT * FROM {$wpdb->prefix}user_review_form";
+		$page_number = 1;
+		// $start_from = ($page_number-1) * $per_page; 
+		$count = $wpdb->get_results($sql);
+		$total_rows = $wpdb->num_rows;
+		$total_page = ceil((int)$total_rows/$per_page);
+
+		// $sql .= " LIMIT $per_page";
+		// $sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
+		$result = $wpdb->get_results( $sql, 'ARRAY_A' );
+
+		$result = $wpdb->get_results( $sql, 'ARRAY_A' );
+
+		if($_POST['pagination_type'] == "next"){
+			$current_page = $_POST['current_page_no'];
+			$page_number += $current_page++;
+
+			$sql .= " LIMIT $per_page";
+			$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
+
+			$result = $wpdb->get_results( $sql,ARRAY_A);
+			$data = ["message"=>"Data sent successfully",'data'=>$result];
+			wp_send_json_success($result);
+			error_log(print_r($result,true));
+		}else if($_POST['pagination_type'] == "prev"){
+			$current_page = $_POST['current_page_no'];
+			$page_number = $current_page--;
+			error_log(print_r($page_number,true));
+			$sql .= " LIMIT $per_page";
+			$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
+
+			$result = $wpdb->get_results( $sql,ARRAY_A);
+			error_log(print_r($result,true));
+			
+		}else if($_POST['pagination_type'] == 'first'){
+			$page_number = 1;
+			error_log(print_r($page_number,true));
+			$sql .= " LIMIT $per_page";
+			$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
+			$result = $wpdb->get_results( $sql,ARRAY_A);
+			error_log(print_r($result,true));
+		}else if($_POST['pagination_type'] == "last"){
+			$page_number = $total_page;
+			error_log(print_r($page_number,true));
+			$sql .= " LIMIT $per_page";
+			$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
+			$result = $wpdb->get_results( $sql,ARRAY_A);
+			error_log(print_r($result,true));
+		}
+	 }
 }

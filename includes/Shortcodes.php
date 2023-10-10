@@ -22,7 +22,7 @@ class Shortcodes {
 	 * Init Shortcodes.
 	 */
 	public function __construct() {
-        error_log(print_r("hello",true));
+        // error_log(print_r("hello",true));
 		$shortcodes = array(
 			'user_review_form'        => __CLASS__ . '::user_review_form',
 			'user_review_display'     => __CLASS__. '::user_review_display',
@@ -105,8 +105,18 @@ class Shortcodes {
 		/**
 		 * Enqueue the frontend form script.
 		 */
-		// wp_enqueue_script( "ritee-user-review-form-script", RITEE_USER_REVIEW_FORM_ASSETS_URL . '/js/ritee-user-review-form.js', array( 'jquery' ), RITEE_USER_REVIEW_FORM_VERSION );
-
+		wp_enqueue_script( "ritee-user-review-display-script", RITEE_USER_REVIEW_FORM_ASSETS_URL . '/js/ritee-user-review-pagination.js', array( 'jquery' ), RITEE_USER_REVIEW_FORM_VERSION );
+		/**
+		 * Localize parameters to be used in the script.
+		 */
+		wp_localize_script(
+			"ritee-user-review-display-script",
+			"ritee_user_review_display_script_params",
+			array(
+				'ajax_url'                              => admin_url( 'admin-ajax.php' ),
+				'ritee_user_review_display_submit_nonce' => wp_create_nonce( 'ritee_user_review_display_submit_nonce' ),
+				)
+			);
 		if ( is_user_logged_in() ) {
             
 			include RITEE_USER_REVIEW_FORM_TEMPLATE_PATH . '/ritee-user-review-display-page.php';

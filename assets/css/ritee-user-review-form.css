@@ -102,11 +102,11 @@ input.current_page{
     font-size: 2rem;
 }
 
-.page-nav a {
+.ritee-page-nav a {
     text-decoration: none;
 }
 
-.page-nav a.disabled {
+.ritee-page-nav a.disabled {
     pointer-events: none;
     cursor: default;
     background: #a7aaad;
@@ -115,4 +115,10 @@ input.current_page{
 
 a.nav-links {
     color: #000;
+}
+
+#loader-icon {
+    text-align: center;
+    position: relative;
+    top: 10px;
 }
