@@ -55,11 +55,24 @@ jQuery(function($) {
 
                 });
 
-                if(formData.get('pagination-button') == "first" || formData.get('pagination-button') == 1){
-                    $('.ritee-review-display-parent').append($("<nav class='d-flex ritee-page-nav' id='ritee-pagination-result' data-current-page-no="+ formData.get('current_page_no')+ "><a class='nav-links nav-first button disabled' data-pagination-button = 'first'>&#171;</a><a class='nav-links nav-prev button disabled' data-pagination-button = 'prev'>&#60;</a><p class='nav-links nav-current-count>"+ formData.get('current_page_no') +" of " + "</p><p class='nav-links nav-total-count' data-total-page="+formData.get('total_page')+ "<p><a class='nav-links nav-next button data-pagination-button = 'next>&#62;</a><a class='nav-links nav-last button' data-pagination-button = 'last'>&#187;</a> </nav>"));
-                }else if(formData.get('pagination-button') == "last" || formData.get('pagination-button') == formData.get('total_page')){
-                    $('.ritee-review-display-parent').append($("<nav class='d-flex ritee-page-nav' id='ritee-pagination-result' data-current-page-no="+ formData.get('current_page_no')+ "><a class='nav-links nav-first button' data-pagination-button = 'first'>&#171;</a><a class='nav-links nav-prev button' data-pagination-button = 'prev'>&#60;</a><p class='nav-links nav-current-count>"+ formData.get('current_page_no') +" of " + "</p><p class='nav-links nav-total-count' data-total-page="+formData.get('total_page')+ "<p><a class='nav-links nav-next button disabled' data-pagination-button = 'next>&#62;</a><a class='nav-links nav-last button disabled' data-pagination-button = 'last'>&#187;</a> </nav>"));
+               var current_page_num = formData.get('current_page_no');
+               if(formData.get('pagination_type') == "first"){
+                $('.ritee-review-display-parent').append($("<nav class='d-flex ritee-page-nav' id = 'ritee-pagination-result' data-current-page-no= "+current_page_num+"><a class='nav-links nav-first button disabled' data-pagination-button = 'first'>&#171;</a><a class='nav-links nav-prev button disabled' data-pagination-button = 'prev'>&#60;</a><p class='nav-links nav-current-count'>"+formData.get('current_page_no')+" of </p><p class='nav-links nav-total-count' data-total-page ="+ formData.get('total_page')+">"+ formData.get('total_page')+"</p><a class='nav-links nav-next button' data-pagination-button = 'next'>&#62;</a><a class='nav-links nav-last button' data-pagination-button = 'last'>&#187;</a></nav>"));
+               }else if(formData.get('pagination_type') == "prev"){
+                    current_page_num = current_page_num--;
+                    $('.ritee-review-display-parent').append($("<nav class='d-flex ritee-page-nav' id = 'ritee-pagination-result' data-current-page-no= "+current_page_num+"><a class='nav-links nav-first button' data-pagination-button = 'first'>&#171;</a><a class='nav-links nav-prev button' data-pagination-button = 'prev'>&#60;</a><p class='nav-links nav-current-count'>"+formData.get('current_page_no')+" of </p><p class='nav-links nav-total-count' data-total-page ="+ formData.get('total_page')+">"+ formData.get('total_page')+"</p><a class='nav-links nav-next button' data-pagination-button = 'next'>&#62;</a><a class='nav-links nav-last button' data-pagination-button = 'last'>&#187;</a></nav>"));
                 }
+                 else if(formData.get('pagination_type') == "next"){
+                    current_page_num = current_page_num++;
+                    console.log(current_page_num);
+                    $('.ritee-review-display-parent').append($("<nav class='d-flex ritee-page-nav' id = 'ritee-pagination-result' data-current-page-no= "+current_page_num+"><a class='nav-links nav-first button' data-pagination-button = 'first'>&#171;</a><a class='nav-links nav-prev button' data-pagination-button = 'prev'>&#60;</a><p class='nav-links nav-current-count'>"+formData.get('current_page_no')+" of </p><p class='nav-links nav-total-count' data-total-page ="+ formData.get('total_page')+">"+ formData.get('total_page')+"</p><a class='nav-links nav-next button' data-pagination-button = 'next'>&#62;</a><a class='nav-links nav-last button' data-pagination-button = 'last'>&#187;</a></nav>"));
+                }else if(formData.get('pagination_type') == "last"){
+                    current_page_num = current_page_num++;                    
+                    $('.ritee-review-display-parent').append($("<nav class='d-flex ritee-page-nav' id = 'ritee-pagination-result' data-current-page-no= "+current_page_num+"><a class='nav-links nav-first button' data-pagination-button = 'first'>&#171;</a><a class='nav-links nav-prev button' data-pagination-button = 'prev'>&#60;</a><p class='nav-links nav-current-count'>"+formData.get('current_page_no')+" of </p><p class='nav-links nav-total-count' data-total-page ="+ formData.get('total_page')+">"+ formData.get('total_page')+"</p><a class='nav-links nav-next button disabled' data-pagination-button = 'next'>&#62;</a><a class='nav-links nav-last button disabled' data-pagination-button = 'last'>&#187;</a></nav>"));
+                }
+
+                console.log(formData.get('pagination_type'));
+                console.log(current_page_num);
 
             },
             error: function(){
