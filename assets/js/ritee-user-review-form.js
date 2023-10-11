@@ -43,8 +43,9 @@ jQuery(document).ready(function ($) {
           } else {
             if (response.data.field_error) {
               Object.keys(response.data.field_error).map((field_key) => {
-                $("#" + field_key.split("_error")[0])
-                  .closest(".ritee-user-review-form-input-row")
+               var id =field_key.split("_error")[0];
+                $("#" + id)
+                  .closest("div")
                   .append(
                     '<label class="ritee-user-review-form-error" for="' +
                       field_key.split("_error")[0] +
