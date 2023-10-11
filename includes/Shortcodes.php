@@ -59,7 +59,7 @@ class Shortcodes {
 	}
 
 	/**
-	 * Output for Application Form.
+	 * Output for Review Form.
 	 *
 	 * @since 1.0.0
 	 */
@@ -93,7 +93,7 @@ class Shortcodes {
 	}
 
 	/**
-	 * Output for Application Form.
+	 * Output for Review Form.
 	 *
 	 * @since 1.0.0
 	 */

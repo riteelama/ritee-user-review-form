@@ -1,6 +1,6 @@
 <?php
 /**
- * JobApplicationForm AJAX
+ * UserReviewForm AJAX
  *
  * AJAX Event Handler
  *
@@ -115,8 +115,6 @@ class AJAX {
 
 	 public static function form_pagination(){
 		global $wpdb;
-
-		error_log(print_r($_POST,true));
 		if ( ! check_ajax_referer( 'ritee_user_review_display_submit_nonce', 'security' ) ) {
 			wp_send_json_error(
 				array(
@@ -130,13 +128,11 @@ class AJAX {
 
 		$sql = "SELECT * FROM {$wpdb->prefix}user_review_form";
 		$page_number = 1;
-		// $start_from = ($page_number-1) * $per_page; 
+ 
 		$count = $wpdb->get_results($sql);
 		$total_rows = $wpdb->num_rows;
 		$total_page = ceil((int)$total_rows/$per_page);
 
-		// $sql .= " LIMIT $per_page";
-		// $sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
 		$result = $wpdb->get_results( $sql, 'ARRAY_A' );
 
 		$result = $wpdb->get_results( $sql, 'ARRAY_A' );
@@ -153,35 +149,29 @@ class AJAX {
 			wp_send_json_success($result);
 		}else if($_POST['pagination_type'] == "prev"){
 			$current_page = $_POST['current_page_no'];
-			error_log(print_r($current_page,true));
 			$page_number = --$current_page;
-			error_log(print_r($page_number,true));
 			$sql .= " LIMIT $per_page";
 			$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
 
 			$result = $wpdb->get_results( $sql,ARRAY_A);
 			$data = ["message"=>"Data sent successfully",'data'=>$result];
 			wp_send_json_success($result);
-			// error_log(print_r($result,true));
 			
 		}else if($_POST['pagination_type'] == 'first'){
 			$page_number = 1;
-			error_log(print_r($page_number,true));
 			$sql .= " LIMIT $per_page";
 			$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
 			$result = $wpdb->get_results( $sql,ARRAY_A);
 			$data = ["message"=>"Data sent successfully",'data'=>$result];
 			wp_send_json_success($result);
-			// error_log(print_r($result,true));
+
 		}else if($_POST['pagination_type'] == "last"){
 			$page_number = $total_page;
-			error_log(print_r($page_number,true));
 			$sql .= " LIMIT $per_page";
 			$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
 			$result = $wpdb->get_results( $sql,ARRAY_A);
 			$data = ["message"=>"Data sent successfully",'data'=>$result];
 			wp_send_json_success($result);
-			// error_log(print_r($result,true));
 		}
 	 }
 }

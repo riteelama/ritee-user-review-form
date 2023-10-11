@@ -1,0 +1,24 @@
+{
+	"name": "ritee/user-review-form",
+	"description": "User Review Form Plugin For WordPress.",
+	"homepage": "http://riteelama.com.np/",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0-or-later",
+    "autoload": {
+		"psr-4": {
+		  "UserReviewForm\\": "includes/"
+		}
+	  },
+	"require": {
+    "composer/installers": "~2.0.0"
+	},
+	"require-dev": {
+    "wp-cli/i18n-command": "2.2.9"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"composer/installers": true
+		}
+	}
+}

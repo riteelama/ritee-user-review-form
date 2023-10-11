@@ -65,17 +65,8 @@ class Admin {
 	 * Loads screen options into memory.
 	 */
 
-    //  public function ritee_user_review_form_list_page() {
-	// 	ob_start();
-	// 	echo '<h1>User Review Form Settings</h1>';
-	// 	echo ob_get_clean();
-	// }
-
-
 	public function template_page_init() {
 		// Table display code here.
-
-
 		global $ritee_user_review_table_list;
 		$ritee_user_review_table_list = new ListTable();
 		$ritee_user_review_table_list->process_actions();
@@ -91,7 +82,7 @@ class Admin {
 	}
 
 	/**
-	 *  Init the Job Application Form List page.
+	 *  Init the User Review Form List page.
 	 */
 	public function ritee_user_review_form_list_page() {
 		ob_start();

@@ -21,29 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-//  add_action( 'init', 'ritee_register_custom_post_type' );
-//  function ritee_register_custom_post_type() {
-//     register_post_type( 'reviews', 
-//         array(
-//             'labels' => array(
-//                 'name' => 'Reviews'
-//             ),
-//             'public' => true,
-//         )
-//     );
-//  }
-
-//  add_shortcode( 'ritee_review_form', 'ritee_review_form_func' );
-// function ritee_review_form_func( $atts ) {
-// 	$atts = shortcode_atts( array(
-// 		'foo' => 'no foo',
-// 		'baz' => 'default baz'
-// 	), $atts, 'bartag' );
-
-//    $form_path = 'templa';
-
-// 	return "";
-// }
 
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 	require_once dirname( __FILE__ ) . '/vendor/autoload.php';

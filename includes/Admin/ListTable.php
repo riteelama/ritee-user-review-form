@@ -33,7 +33,7 @@ class ListTable extends \WP_List_Table {
 	}
 
 	/**
-	 * Get applications columns.
+	 * Get reviews columns.
 	 *
 	 * @return array
 	 */
@@ -233,9 +233,9 @@ class ListTable extends \WP_List_Table {
 	}
 
 	/**
-	 * Delete a application record.
+	 * Delete a review record.
 	 *
-	 * @param int $id application ID
+	 * @param int $id review ID
 	 */
 	public static function delete_review( $id ) {
 		global $wpdb;

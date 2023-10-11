@@ -1,6 +1,6 @@
 <?php
 /**
- * USer Review Display Layout
+ * User Review Display Layout
  *
  * @package UserReviewForm/Templates
  * @version 1.0.0
@@ -17,15 +17,12 @@ $per_page = 2;
 $current_page = 0;
 $page_number = 1;
 $start_from = ($page_number-1) * $per_page; 
-// $count_sql = "SELECT COUNT(*) FROM {$wpdb->prefix}user_review_form LIMIT ".$startFrom.",".$per_page;
 $count = $wpdb->get_results($sql);
 $total_rows = $wpdb->num_rows;
 $total_page = ceil((int)$total_rows/$per_page);
 
 $sql .= " LIMIT $per_page";
 		$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;
-
-// $sql .= " LIMIT $start_from, $per_page";
 
 $result = $wpdb->get_results( $sql, 'ARRAY_A' );
 
@@ -73,10 +70,5 @@ wp_enqueue_script( "ritee-user-review-form-script", RITEE_USER_REVIEW_FORM_ASSET
         </div>
         
     <?php
-    // for($page_number = 1; $page_number<= $total_page; $page_number++) {  
-        
-        // echo '<a href = "index.php?page=' . $page_number . '">' . $page_number . ' </a>';  
-
-    // }  
     }
 ?>
