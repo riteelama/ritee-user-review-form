@@ -125,7 +125,7 @@ class AJAX {
 			);
 		}
 
-		$per_page = 5;
+		$per_page = 2;
 		$current_page = 0;
 
 		$sql = "SELECT * FROM {$wpdb->prefix}user_review_form";
@@ -153,7 +153,8 @@ class AJAX {
 			wp_send_json_success($result);
 		}else if($_POST['pagination_type'] == "prev"){
 			$current_page = $_POST['current_page_no'];
-			$page_number = $current_page--;
+			error_log(print_r($current_page,true));
+			$page_number = --$current_page;
 			error_log(print_r($page_number,true));
 			$sql .= " LIMIT $per_page";
 			$sql .= ' OFFSET ' . ( (int) $page_number - 1 ) * $per_page;

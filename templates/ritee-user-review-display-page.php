@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $wpdb;
 
 $sql = "SELECT * FROM {$wpdb->prefix}user_review_form";
-$per_page = 5;
+$per_page = 2;
 $current_page = 0;
 $page_number = 1;
 $start_from = ($page_number-1) * $per_page; 
@@ -56,12 +56,12 @@ wp_enqueue_script( "ritee-user-review-form-script", RITEE_USER_REVIEW_FORM_ASSET
 ?>
 
 </div>
-
+</div>
 <?php 
     if($count > $per_page){
 
         ?>
-        <div class="riteea-page-nav-parent">
+        <div class="ritee-page-nav-parent">
         <nav aria-label="Page navigation example" class="d-flex ritee-page-nav" id = "ritee-pagination-result" data-current-page-no="<?php echo $page_number;?>">
             <a href="" class="nav-links nav-first button disabled" data-pagination-button = "first">&#171;</a>
             <a href="" class="nav-links nav-prev button disabled" data-pagination-button = "prev">&#60;</a>
@@ -71,7 +71,7 @@ wp_enqueue_script( "ritee-user-review-form-script", RITEE_USER_REVIEW_FORM_ASSET
             <a href="" class="nav-links nav-last button" data-pagination-button = "last">&#187;</a>
         </nav>
         </div>
-        </div>
+        
     <?php
     // for($page_number = 1; $page_number<= $total_page; $page_number++) {  
         
